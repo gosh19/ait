@@ -15,11 +15,8 @@ Aplicación web para gestion de "Artículos", permitiendo a los usuarios crear, 
 - [Uso de la Aplicación](#uso-de-la-aplicación)
   - [Acceso a la Aplicación](#acceso-a-la-aplicación)
   - [Gestión de Artículos (CRUD)](#gestión-de-artículos-crud)
-  - [Importar Artículos desde Excel](#importar-artículos-desde-excel)
-  - [Descargar Artículos a Excel](#descargar-artículos-a-excel)
 - [Estructura del Proyecto](#estructura-del-proyecto)
-- [Decisiones de Diseño y Suposiciones](#decisiones-de-diseño-y-suposiciones)
-- [Posibles Mejoras Futuras](#posibles-mejoras-futuras)
+
 
 ## Descripción del Proyecto
 
@@ -156,3 +153,25 @@ docker-compose exec web python manage.py createsuperuser
  En la interfaz del frontend, haz clic en el botón "Descargar Excel".\
  Se generará y descargará un archivo articulos.xlsx conteniendo todos los artículos actualmente en la base de datos, con las columnas Codigo, Descripcion y Precio. \
  El archivo es generado por el frontend usando los datos obtenidos de la API.
+
+## Estructura del Proyecto
+
+ait/
+├── backend/                # Proyecto Django (Backend)
+│   ├── articulos/          # App de Django para los artículos
+│   ├── gestor_articulos/   # Configuración principal del proyecto Django
+│   ├── venv/               # Entorno virtual de Python (ignorado por Git)
+│   ├── Dockerfile          # Instrucciones para construir la imagen Docker del backend
+│   ├── entrypoint.sh       # Script que se ejecuta al iniciar el contenedor backend
+│   ├── manage.py           # Utilidad de línea de comandos de Django
+│   └── requirements.txt    # Dependencias de Python para el backend
+├── frontend/               # Proyecto React (Frontend)
+│   ├── public/
+│   ├── src/                # Código fuente de React
+│   ├── package.json        # Dependencias y scripts de Node.js
+│   └── ...                 # Otros archivos de configuración de React
+├── .dockerignore           # Especifica archivos a ignorar por Docker en el backend
+├── .gitattributes          # (Opcional) Configuración de finales de línea para Git
+├── .gitignore              # Especifica archivos a ignorar por Git
+├── docker-compose.yml      # Define los servicios Docker (backend y base de datos)
+└── README.md               # Este archivo
