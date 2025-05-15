@@ -147,11 +147,12 @@ docker-compose exec web python manage.py createsuperuser
  La primera fila debe contener los encabezados: Codigo, Descripcion, Precio. (El backend espera estos nombres exactos, sensible a mayúsculas/minúsculas).
 
 ### Proceso de Importación:
- En la interfaz del frontend, haz clic en el botón "Importar desde Excel".
- Selecciona tu archivo Excel.
- El archivo se enviará al backend para su procesamiento.
- Adjunto ejemplod e archivo en la raiz del repositorio
- Se mostrará un mensaje indicando el resultado (artículos creados/actualizados y posibles errores de validación). La lista de artículos en el frontend se actualizará.
- Descargar Artículos a Excel
- En la interfaz del frontend, haz clic en el botón "Descargar Excel".
- Se generará y descargará un archivo articulos.xlsx conteniendo todos los artículos actualmente en la base de datos, con las columnas Codigo, Descripcion y Precio. El # archivo es generado por el frontend usando los datos obtenidos de la API.
+ En la interfaz del frontend, haz clic en el botón "Importar desde Excel".\
+ Selecciona tu archivo Excel.\
+ El archivo se enviará al backend para su procesamiento.\
+ Adjunto ejemplod e archivo en la raiz del repositorio\
+ Se mostrará un mensaje indicando el resultado (artículos creados/actualizados y posibles errores de validación). La lista de artículos en el frontend se actualizará.\
+ Descargar Artículos a Excel\
+ En la interfaz del frontend, haz clic en el botón "Descargar Excel".\
+ Se generará y descargará un archivo articulos.xlsx conteniendo todos los artículos actualmente en la base de datos, con las columnas Codigo, Descripcion y Precio. \
+ El archivo es generado por el frontend usando los datos obtenidos de la API.
