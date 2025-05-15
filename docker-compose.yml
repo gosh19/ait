@@ -1,0 +1,56 @@
+services:
+  # Servicio de la Base de Datos (MySQL)
+  db:
+    image: mysql:8.0 # Usamos una imagen oficial de MySQL 8.0 (compatible)
+    container_name: gestor_articulos_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: 'articulos_db' # Nombre de la base de datos que se creará
+      MYSQL_USER: 'matias'   # Usuario para la base de datos
+      MYSQL_PASSWORD: 'tL@Rvq3FOxCcn3Vz' # Contraseña para el usuario
+      MYSQL_ROOT_PASSWORD: '' # Contraseña para el usuario root de MySQL
+    volumes:
+      - mysql_data:/var/lib/mysql # Persiste los datos de MySQL
+    ports:
+      # Puedes exponer el puerto de MySQL al host si necesitas acceso directo para depuración
+      # Formato: <puerto_host>:<puerto_contenedor>
+      - '3307:3306' # Usamos 3307 en el host para evitar conflictos con un MySQL local en 3306
+    healthcheck: # (Opcional pero recomendado) Verifica que MySQL esté listo
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u$$MYSQL_USER", "-p$$MYSQL_PASSWORD"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Servicio de la Aplicación Web (Django)
+  web:
+    build:
+      context: ./backend # Directorio donde se encuentra el Dockerfile del backend
+      dockerfile: Dockerfile
+    container_name: gestor_articulos_web
+    restart: unless-stopped
+    # El comando se definirá mejor con un script de entrada más adelante
+    # command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app # Monta el código del backend en el contenedor para desarrollo (hot-reloading)
+    ports:
+      - "8000:8000" # Mapea el puerto 8000 del contenedor al puerto 8000 del host
+    environment:
+      # Variables de entorno para Django (las usaremos en settings.py)
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+      - DEBUG=1
+      - SECRET_KEY=cambiame_por_una_clave_secreta_real_y_unica
+      - DB_ENGINE=django.db.backends.mysql
+      - DB_NAME=articulos_db # Debe coincidir con MYSQL_DATABASE del servicio db
+      - DB_USER=articulos_user # Debe coincidir con MYSQL_USER del servicio db
+      - DB_PASSWORD=articulos_password # Debe coincidir con MYSQL_PASSWORD del servicio db
+      - DB_HOST=db # Nombre del servicio de la base de datos (el host dentro de la red Docker)
+      - DB_PORT=3306
+      # Podríamos añadir más, como ALLOWED_HOSTS, EMAIL_HOST, etc.
+    depends_on:
+      db: # Asegura que el servicio 'db' se inicie e idealmente esté saludable antes que 'web'
+        condition: service_healthy # Requiere el healthcheck en el servicio 'db'
+
+# Definición de volúmenes nombrados (para persistencia de datos)
+volumes:
+  mysql_data: # El volumen para los datos de MySQL
