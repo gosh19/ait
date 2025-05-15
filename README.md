@@ -156,22 +156,22 @@ docker-compose exec web python manage.py createsuperuser
 
 ## Estructura del Proyecto
 
-ait/
-├── backend/                # Proyecto Django (Backend)
-│   ├── articulos/          # App de Django para los artículos
-│   ├── gestor_articulos/   # Configuración principal del proyecto Django
-│   ├── venv/               # Entorno virtual de Python (ignorado por Git)
-│   ├── Dockerfile          # Instrucciones para construir la imagen Docker del backend
-│   ├── entrypoint.sh       # Script que se ejecuta al iniciar el contenedor backend
-│   ├── manage.py           # Utilidad de línea de comandos de Django
-│   └── requirements.txt    # Dependencias de Python para el backend
-├── frontend/               # Proyecto React (Frontend)
-│   ├── public/
-│   ├── src/                # Código fuente de React
-│   ├── package.json        # Dependencias y scripts de Node.js
-│   └── ...                 # Otros archivos de configuración de React
-├── .dockerignore           # Especifica archivos a ignorar por Docker en el backend
-├── .gitattributes          # (Opcional) Configuración de finales de línea para Git
-├── .gitignore              # Especifica archivos a ignorar por Git
-├── docker-compose.yml      # Define los servicios Docker (backend y base de datos)
-└── README.md               # Este archivo
+ait/  \
+├── backend/                # Proyecto Django (Backend)  \
+│   ├── articulos/          # App de Django para los artículos  \
+│   ├── gestor_articulos/   # Configuración principal del proyecto Django \
+│   ├── venv/               # Entorno virtual de Python (ignorado por Git) \
+│   ├── Dockerfile          # Instrucciones para construir la imagen Docker del backend \
+│   ├── entrypoint.sh       # Script que se ejecuta al iniciar el contenedor backend \
+│   ├── manage.py           # Utilidad de línea de comandos de Django \
+│   └── requirements.txt    # Dependencias de Python para el backend \
+├── frontend/               # Proyecto React (Frontend) \
+│   ├── public/  \
+│   ├── src/                # Código fuente de React  \
+│   ├── package.json        # Dependencias y scripts de Node.js \
+│   └── ...                 # Otros archivos de configuración de React \
+├── .dockerignore           # Especifica archivos a ignorar por Docker en el backend \
+├── .gitattributes          # (Opcional) Configuración de finales de línea para Git \
+├── .gitignore              # Especifica archivos a ignorar por Git \
+├── docker-compose.yml      # Define los servicios Docker (backend y base de datos) \
+└── README.md               # Este archivo \
