@@ -137,15 +137,15 @@ docker-compose exec web python manage.py createsuperuser
 ## Gestión de Artículos (CRUD)
  La interfaz de usuario del frontend permite:
  
- Ver la lista de artículos cargados desde la API.
- Crear un nuevo artículo usando el formulario (botón "Crear Nuevo Artículo"). Los datos se enviarán a la API del backend.
- Editar un artículo existente (botón "Editar" en cada fila).
- Eliminar un artículo (botón "Eliminar" en cada fila, con confirmación).
- Importar Artículos desde Excel
- Formato del Archivo Excel:
- El archivo debe ser .xlsx o .xls.
+ Ver la lista de artículos cargados desde la API.\
+ Crear un nuevo artículo usando el formulario (botón "Crear Nuevo Artículo"). Los datos se enviarán a la API del backend.\
+ Editar un artículo existente (botón "Editar" en cada fila).\
+ Eliminar un artículo (botón "Eliminar" en cada fila, con confirmación).\
+ Importar Artículos desde Excel\
+ Formato del Archivo Excel:\
+ El archivo debe ser .xlsx o .xls.\
  La primera fila debe contener los encabezados: Codigo, Descripcion, Precio. (El backend espera estos nombres exactos, sensible a mayúsculas/minúsculas).
- Las filas subsiguientes deben contener los datos de los artículos. Ejemplo: | Codigo | Descripcion | Precio | | :----- | :----------------- | :----- | | ART001 | Artículo Ejemplo 1 | 10.99 | | ART002 | Artículo Ejemplo 2 | 25.50 |
+
 ### Proceso de Importación:
  En la interfaz del frontend, haz clic en el botón "Importar desde Excel".
  Selecciona tu archivo Excel.
